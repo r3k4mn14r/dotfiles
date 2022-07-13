@@ -4,8 +4,7 @@ set nocompatible
 call plug#begin()
 
 Plug 'gruvbox-community/gruvbox'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'nvim-lualine/lualine.nvim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'airblade/vim-rooter'
@@ -177,6 +176,15 @@ luafile $HOME/.config/nvim/ironconfig.lua
 
 " LSP configuration  -------------------------------------------------------{{{
 set completeopt=noinsert,menuone,noselect
+" setup lualine
+lua << END
+require('lualine').setup {
+  options = {
+    theme = 'gruvbox',
+    separator = { left = '', right = ''}
+  }
+}
+END
 
 " Configure LSP through rust-tools.nvim plugin.
 " rust-tools will configure and enable certain LSP features for us.
