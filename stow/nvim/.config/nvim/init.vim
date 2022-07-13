@@ -11,7 +11,6 @@ Plug 'tpope/vim-commentary'
 Plug 'airblade/vim-rooter'
 Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'
-Plug 'w0rp/ale'
 Plug 'hkupty/iron.nvim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/cmp-nvim-lsp'
@@ -323,6 +322,9 @@ require'nvim-treesitter.configs'.setup {
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = false,
+
+  -- Automatically install missing parsers when entering buffer
+  auto_install = true,
 
   -- List of parsers to ignore installing (for "all")
   ignore_install = { "javascript" },
