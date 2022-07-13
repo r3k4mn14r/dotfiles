@@ -20,8 +20,11 @@ Plug 'hrsh7th/cmp-vsnip'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'simrat39/rust-tools.nvim'
 Plug 'ray-x/lsp_signature.nvim'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
+Plug 'nvim-telescope/telescope.nvim', {'tag': '0.1.0'}
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-fzy-native.nvim'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
 Plug 'rust-lang/rust.vim', {'for': 'rust'}
@@ -324,6 +327,41 @@ require'nvim-treesitter.configs'.setup {
     additional_vim_regex_highlighting = false,
   },
 }
+END
+
+" Setup telescope
+lua <<END
+local pickers = require("telescope.pickers")
+local finders = require("telescope.finders")
+local previewers = require("telescope.previewers")
+local action_state = require("telescope.actions.state")
+local conf = require("telescope.config").values
+local actions = require("telescope.actions")
+
+require("telescope").setup({
+	defaults = {
+		file_sorter = require("telescope.sorters").get_fzy_sorter,
+		prompt_prefix = " >",
+		color_devicons = true,
+
+		file_previewer = require("telescope.previewers").vim_buffer_cat.new,
+		grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
+		qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
+
+		mappings = {
+			i = {
+				["<C-x>"] = false,
+				["<C-q>"] = actions.send_to_qflist,
+			},
+		},
+	},
+	extensions = {
+		fzy_native = {
+			override_generic_sorter = false,
+			override_file_sorter = true,
+		},
+	},
+})
 END
 
 " }}}
