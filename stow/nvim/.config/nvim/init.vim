@@ -131,19 +131,6 @@ nnoremap <silent> <F8> :setlocal foldnestmax=2<CR>
 
 " Color scheme -------------------------------------------------------------{{{
 
-" match the git-gutter line to the color of the number line background
-function! MatchSignColumnToNbrLine() abort
-  if &background == "dark"
-    highlight SignColumn ctermbg=Black
-  else
-    highlight SignColumn ctermbg=LightGray
-  endif
-endfunction
-
-augroup MyColors autocmd!
-    autocmd ColorScheme * call MatchSignColumnToNbrLine()
-augroup END
-
 set termguicolors
 let g:gruvbox_contrast_dark="hard"
 let g:gruvbox_invert_selection='0'
@@ -181,27 +168,10 @@ let g:airline_powerline_fonts = 1
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
 
-" pyenv configs
-let g:python3_host_prog = expand("~/.pyenv/versions/base/bin/python")
-
-" vim-markdown
-let g:vim_markdown_frontmatter = 1
-
 " iron.nvim
 noremap <leader>! :IronPromptRepl<CR>
 noremap <leader>$ :IronRepl<CR>
 luafile $HOME/.config/nvim/ironconfig.lua
-
-" ale
-let g:ale_lint_on_text_changed = 'never'
-let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-let g:ale_linters = {'python': ['flake8'], 'rust': ['cargo', 'rust-analyzer']}
-let g:ale_completion_enabled = 0
-
-" fzf
-nmap <C-P> :WorkspaceFiles<CR>
-command! -bang WorkspaceFiles call fzf#vim#files('~/workspaces', <bang>0)
-let g:fzf_layout = { 'down': '25%' }
 
 " }}}
 
