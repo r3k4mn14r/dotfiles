@@ -164,12 +164,6 @@ au Filetype rust set colorcolumn=100
 " }}}
 
 " Plugin configurations  ---------------------------------------------------{{{
-" vim-airline
-let g:airline_theme = "gruvbox"
-let g:airline_powerline_fonts = 1
-let g:airline_left_sep = ''
-let g:airline_right_sep = ''
-
 " iron.nvim
 noremap <leader>! :IronPromptRepl<CR>
 noremap <leader>$ :IronRepl<CR>
