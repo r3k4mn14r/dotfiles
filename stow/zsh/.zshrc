@@ -5,6 +5,11 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
+autoload -U compinit; compinit
+
 # ZSH settings
 autoload -U colors && colors # Load Colors.
 unsetopt case_glob           # Use Case-Insensitve Globbing.
@@ -16,10 +21,23 @@ setopt notify                # Report Status Of Background Jobs Immediately.
 setopt auto_param_slash      # If Completed Parameter Is A Directory, Add A Trailing Slash.
 
 # set zstyles options
-zstyle ':completion:*:*:kill:*' menu yes select
-zstyle ':completion:*:kill:*'   force-list always
-zstyle ':completion:*:descriptions' format ' %F{yellow}-- %d --%f'
-zstyle ':completion:*:*:*:default' menu yes select
+zstyle ':completion:*' completer _extensions _complete _approximate # Define completers
+zstyle ':completion:*' use-cache on # Use cache for commands using cache
+zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/.zcompcache"
+zstyle ':completion:*' complete true # Complete the alias when _expand_alias is used as a function
+zstyle ':completion:*' menu select
+zstyle ':completion:*' complete-options true
+zstyle ':completion:*' file-sort modification
+zstyle ':completion:*:*:*:*:corrections' format '%F{yellow}!- %d (errors: %e) -!%f'
+zstyle ':completion:*:*:*:*:descriptions' format '%F{blue}-- %D %d --%f'
+zstyle ':completion:*:*:*:*:messages' format ' %F{purple} -- %d --%f'
+zstyle ':completion:*:*:*:*:warnings' format ' %F{red}-- no matches found --%f'
+zstyle ':completion:*:*:*:*:default' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*:*:cd:*' tag-order local-directories directory-stack path-directories
+zstyle ':completion:*' group-name '' # Required for completion to be in good groups (named after the tags)
+zstyle ':completion:*:*:-command-:*:*' group-order aliases builtins functions commands
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*' # See ZSHCOMPWID "completion matching control"
+zstyle ':completion:*' keep-prefix true
 
 # vi mode with jk map
 bindkey -v
@@ -65,12 +83,12 @@ alias ktm="tmux kill-server"
 export PATH="$HOME/.poetry/bin:$PATH"  # poetry
 eval "$(pyenv init -)"
 function poet() {
-	POET_MANUAL=1
-	if [[ -v VIRTUAL_ENV ]]; then
-		deactivate
-	else
-		. "$(poetry env info --path)/bin/activate"
-	fi
+  POET_MANUAL=1
+  if [[ -v VIRTUAL_ENV ]]; then
+    deactivate
+  else
+    . "$(poetry env info --path)/bin/activate"
+  fi
 }
 
 # rust environment
