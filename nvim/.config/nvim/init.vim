@@ -129,6 +129,12 @@ nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 nnoremap <silent> <F6> :set foldmethod=indent<CR>
 nnoremap <silent> <F8> :setlocal foldnestmax=2<CR>
 
+" telescope
+nnoremap <silent> ;f <cmd>Telescope find_files<cr>
+nnoremap <silent> ;r <cmd>Telescope live_grep<cr>
+nnoremap <silent> \\ <cmd>Telescope buffers<cr>
+nnoremap <silent> ;; <cmd>Telescope help_tags<cr>
+
 " }}}
 
 " Color scheme -------------------------------------------------------------{{{
