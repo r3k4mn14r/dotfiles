@@ -3,9 +3,12 @@ local iron = require('iron.core')
 iron.setup {
   config = {
     close_window_on_exit = true,
-    python = require("iron.fts.python").ipython,
-    -- should_map_plug = true,
     repl_open_cmd = "botright vertical split",
+    repl_definition = {
+      python = {
+        command = {"ipython"}
+      }
+    },
   },
 
   keymaps = {
@@ -13,4 +16,3 @@ iron.setup {
     visual_send = "<space>sc",
   }
 }
-
