@@ -167,9 +167,9 @@ augroup END
 
 " Plugin configurations  ---------------------------------------------------{{{
 
+lua require('lsp_cfg')
 lua require('ironconfig_cfg')
 lua require('treesitter_cfg')
-lua require('lsp_cfg')
 
 " iron.nvim
 noremap <leader>$ :IronRepl<CR>
