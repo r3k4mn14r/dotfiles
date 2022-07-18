@@ -23,7 +23,6 @@ Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'onsails/lspkind-nvim'
 Plug 'hrsh7th/cmp-path'
-Plug 'simrat39/rust-tools.nvim'
 
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
