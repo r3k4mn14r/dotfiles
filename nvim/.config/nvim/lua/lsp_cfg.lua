@@ -79,9 +79,9 @@ end
 
 -- setup language servers
 
-require('lspconfig')['rust_analyzer'].setup(config({}))
+require('lspconfig')['jedi_language_server'].setup(config({}))
 
-require('lspconfig')['jedi_language_server'].setup(config({
+require('lspconfig')['rust_analyzer'].setup(config({
   server = {
     settings = {
       ["rust-analyzer"] = {
@@ -96,7 +96,7 @@ require('lspconfig')['jedi_language_server'].setup(config({
             enable = false,
           },
         },
-      }
-    }
+      },
+    },
   },
 }))
