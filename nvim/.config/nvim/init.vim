@@ -29,6 +29,7 @@ Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
 Plug 'rust-lang/rust.vim', {'for': 'rust'}
 Plug 'cespare/vim-toml', {'for': 'toml'}
 Plug 'stephpy/vim-yaml', {'for': 'yaml'}
+Plug 'tomlion/vim-solidity', {'for': 'solidity'}
 
 call plug#end()
 filetype plugin indent on    " required
