@@ -79,7 +79,6 @@ alias tm="tmux new-session -s dev"
 alias ktm="tmux kill-server"
 
 # python environment
-export PATH="$HOME/.poetry/bin:$PATH"  # poetry
 eval "$(pyenv init -)"
 function poet() {
   POET_MANUAL=1
