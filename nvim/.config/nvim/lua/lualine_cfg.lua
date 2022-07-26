@@ -1,6 +1,6 @@
 require('lualine').setup {
   options = {
-    theme = 'gruvbox-baby',
+    theme = 'solarized',
     separator = { left = '', right = ''}
   }
 }

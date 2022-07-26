@@ -4,6 +4,8 @@ set nocompatible
 call plug#begin()
 
 Plug 'luisiacc/gruvbox-baby', {'branch': 'main'}
+" Plug 'ishan9299/nvim-solarized-lua'
+Plug 'overcache/NeoSolarized'
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
@@ -38,12 +40,12 @@ filetype plugin indent on    " required
 
 " Basic settings  ----------------------------------------------------------{{{
 
-" syntax on                 " syntax highlighing
+syntax on                 " syntax highlighing
 " filetype on               " try to detect filetypes
 " filetype plugin indent on " enable loading indent file for filetype
 set number                " Display line numbers
 set relativenumber        " Display relative line numbers
-" set background=dark       " We are using dark background in vim
+set background=dark       " We are using dark background in vim
 set wildmenu              " Menu completion in command mode on <Tab>
 set wildmode=full         " <Tab> cycles between all matching choices.
 set t_Co=256              " Force terminal colors to 256
@@ -136,11 +138,15 @@ nnoremap <silent> <F8> :setlocal foldnestmax=2<CR>
 " Color scheme  ------------------------------------------------------------{{{
 
 set termguicolors
-let g:gruvbox_baby_background_color="dark"
-let g:gruvbox_baby_function_style="NONE"
-let g:gruvbox_baby_keyword_style="NONE"
-let g:gruvbox_baby_comment_style="NONE"
-colorscheme gruvbox-baby
+" let g:gruvbox_baby_background_color="dark"
+" let g:gruvbox_baby_function_style="NONE"
+" let g:gruvbox_baby_keyword_style="NONE"
+" let g:gruvbox_baby_comment_style="NONE"
+" colorscheme gruvbox-baby
+" colorscheme solarized
+let g:neosolarized_bold = 0
+let g:neosolarized_underline = 0
+colorscheme NeoSolarized
 
 " }}}
 
@@ -170,6 +176,7 @@ augroup END
 lua require('lsp_cfg')
 lua require('ironconfig_cfg')
 lua require('treesitter_cfg')
+lua require('lualine_cfg')
 
 " iron.nvim
 noremap <leader>$ :IronRepl<CR>
