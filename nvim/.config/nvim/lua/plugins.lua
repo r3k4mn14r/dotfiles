@@ -6,7 +6,7 @@ return require("packer").startup(function()
     use 'airblade/vim-rooter'
     use 'tpope/vim-fugitive'
     use 'mhinz/vim-signify'
-    use {'hkupty/iron.nvim', ft = 'python'}
+    use 'hkupty/iron.nvim'
 
     use 'tjdevries/colorbuddy.nvim'
     use 'svrana/neosolarized.nvim'
