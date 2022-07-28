@@ -3,6 +3,8 @@
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
+vim.opt.completeopt = {"menu", "menuone", "noselect"}
+
 -- setup nvim-cmp
 
 local cmp = require("cmp")
@@ -60,7 +62,7 @@ local function config(_config)
 			nmap("<leader>vca", ":lua vim.lsp.buf.code_action()<CR>")
 			nmap("<leader>vrr", ":lua vim.lsp.buf.references()<CR>")
 			nmap("<leader>vrn", ":lua vim.lsp.buf.rename()<CR>")
-			imap("<C-h>", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
+			imap("<C-s>", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
 		end,
 	}, _config or {})
 end
