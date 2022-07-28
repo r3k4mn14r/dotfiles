@@ -1,39 +1,46 @@
-! special
-*.foreground:   #93a1a1
-*.background:   #002b36
-*.cursorColor:  #93a1a1
+! Base16 Google Dark
+#define base00 #1d1f21
+#define base01 #282a2e
+#define base02 #373b41
+#define base03 #969896
+#define base04 #b4b7b4
+#define base05 #c5c8c6
+#define base06 #e0e0e0
+#define base07 #ffffff
+#define base08 #CC342B
+#define base09 #F96A38
+#define base0A #FBA922
+#define base0B #198844
+#define base0C #3971ED
+#define base0D #3971ED
+#define base0E #A36AC7
+#define base0F #3971ED
 
-! black
-*.color0:       #002b36
-*.color8:       #657b83
+*.foreground:   base05
+#ifdef background_opacity
+*.background:   [background_opacity]base00
+#else
+*.background:   base00
+#endif
+*.cursorColor:  base05
 
-! red
-*.color1:       #dc322f
-*.color9:       #dc322f
+*.color0:       base00
+*.color1:       base08
+*.color2:       base0B
+*.color3:       base0A
+*.color4:       base0D
+*.color5:       base0E
+*.color6:       base0C
+*.color7:       base05
 
-! green
-*.color2:       #859900
-*.color10:      #859900
-
-! yellow
-*.color3:       #b58900
-*.color11:      #b58900
-
-! blue
-*.color4:       #268bd2
-*.color12:      #268bd2
-
-! magenta
-*.color5:       #6c71c4
-*.color13:      #6c71c4
-
-! cyan
-*.color6:       #2aa198
-*.color14:      #2aa198
-
-! white
-*.color7:       #93a1a1
-*.color15:      #fdf6e3
+*.color8:       base03
+*.color9:       base09
+*.color10:      base01
+*.color11:      base02
+*.color12:      base04
+*.color13:      base06
+*.color14:      base0F
+*.color15:      base07
 
 xterm*faceName: SauceCodePro Nerd Font Mono
 xterm*faceSize: 11

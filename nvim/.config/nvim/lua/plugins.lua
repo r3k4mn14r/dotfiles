@@ -9,7 +9,7 @@ return require("packer").startup(function()
     use 'hkupty/iron.nvim'
 
     use 'tjdevries/colorbuddy.nvim'
-    use 'svrana/neosolarized.nvim'
+    use 'tjdevries/gruvbuddy.nvim'
 
     use {
         'nvim-treesitter/nvim-treesitter',

@@ -1,6 +1,6 @@
 require('lualine').setup {
   options = {
-    theme = 'solarized',
+    theme = 'auto',
     separator = { left = '', right = ''}
   }
 }

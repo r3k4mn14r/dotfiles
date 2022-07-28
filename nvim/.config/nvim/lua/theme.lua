@@ -1,2 +1,2 @@
 vim.opt.termguicolors = true
-require("neosolarized").setup{}
+require('colorbuddy').colorscheme('gruvbuddy')
