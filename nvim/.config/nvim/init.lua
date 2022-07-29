@@ -4,14 +4,6 @@ if require("first_load")() then
 end
 
 -- load configs
-require("mappings")
+require("keymaps")
 require("plugins")
 require("settings")
-require("theme")
-
--- load plugin settings
-require("plugin.lualine")
-require("plugin.lsp")
-require("plugin.treesitter")
-require("plugin.telescope")
-require("plugin.ironconfig")
