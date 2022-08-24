@@ -95,6 +95,8 @@ if [[ -x "$(command -v rustc)" ]]; then
   export RUST_SRC_PATH=$(rustc --print sysroot)/lib/rustlib/src/rust/library
 fi
 
+export PATH="$HOME/.npm/bin:$PATH"
+
 source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
