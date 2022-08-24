@@ -27,6 +27,7 @@ return require("packer").startup(function()
     use 'hrsh7th/nvim-cmp'
     use 'onsails/lspkind-nvim'
     use 'hrsh7th/cmp-path'
+    use 'L3MON4D3/LuaSnip'
 
     use {'rust-lang/rust.vim', ft = 'rust'}
     use {'cespare/vim-toml', ft = 'toml'}
