@@ -1,5 +1,5 @@
 -- Bootstrap Packer
-if require("first_load")() then
+if require("bootstrap_packer")() then
   return
 end
 
