@@ -74,6 +74,7 @@ alias gd='git diff --no-ext-diff'
 alias gD='git diff --no-ext-diff --word-diff'
 alias gco='git checkout'
 alias gsw='git switch'
+alias gl='git log'
 # tmux
 alias tm="tmux new-session -s dev"
 alias ktm="tmux kill-server"
