@@ -79,6 +79,9 @@ alias gl='git log'
 alias tm="tmux new-session -s dev"
 alias ktm="tmux kill-server"
 
+# go to project shortcut
+alias gtp="cd $CURRENT_PROJECT"
+
 # python environment
 eval "$(pyenv init -)"
 function poet() {
