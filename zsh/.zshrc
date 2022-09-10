@@ -80,7 +80,7 @@ alias tm="tmux new-session -s dev"
 alias ktm="tmux kill-server"
 
 # go to project shortcut
-alias gtp="cd $CURRENT_PROJECT"
+alias gg="cd $CURRENT_PROJECT && ll"
 
 # python environment
 eval "$(pyenv init -)"
