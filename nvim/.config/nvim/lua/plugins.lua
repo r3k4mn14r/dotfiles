@@ -3,7 +3,6 @@ return require("packer").startup(function()
     use 'nvim-lualine/lualine.nvim'
     use 'tpope/vim-surround'
     use 'tpope/vim-commentary'
-    use 'airblade/vim-rooter'
     use 'tpope/vim-fugitive'
     use 'mhinz/vim-signify'
     use 'hkupty/iron.nvim'
