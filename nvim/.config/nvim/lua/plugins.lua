@@ -9,6 +9,7 @@ return require("packer").startup(function()
 
     use 'tjdevries/colorbuddy.nvim'
     use 'tjdevries/gruvbuddy.nvim'
+    use 'norcalli/nvim-colorizer.lua'
 
     use {
         'nvim-treesitter/nvim-treesitter',
