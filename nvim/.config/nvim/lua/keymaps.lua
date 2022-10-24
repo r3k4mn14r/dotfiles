@@ -33,6 +33,7 @@ tmap("<C-j>", "<C-\\><C-n><C-w>j")
 tmap("<C-k>", "<C-\\><C-n><C-w>k")
 tmap("<C-l>", "<C-\\><C-n><C-w>l")
 tmap("<Esc>", "<C-\\><C-n>")
+tmap("<C-H>", "<BS>")
 
 -- Quit window on <leader>q
 nmap("<leader>q", ":q<CR>")
