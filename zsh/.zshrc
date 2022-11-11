@@ -69,7 +69,6 @@ alias gS='git status'
 alias ga='git add'
 alias gcm='git commit --message'
 alias gpu='git push -u'
-alias gpuom='git push -u origin main'
 alias gfo='git fetch origin'
 alias gM='git merge --ff-only'
 alias gR='git reset --hard'
@@ -78,12 +77,10 @@ alias gD='git diff --no-ext-diff --word-diff'
 alias gco='git checkout'
 alias gsw='git switch'
 alias gl='git log'
+alias grb='git branch'
+alias gsb='git submodule'
 # tmux
-alias tm="tmux new-session -s dev"
 alias ktm="tmux kill-server"
-
-# go to project shortcut
-alias gg="cd $CURRENT_PROJECT && ll"
 
 # python environment
 eval "$(pyenv init -)"
