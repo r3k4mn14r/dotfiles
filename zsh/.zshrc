@@ -77,7 +77,7 @@ alias gD='git diff --no-ext-diff --word-diff'
 alias gco='git checkout'
 alias gsw='git switch'
 alias gl='git log'
-alias grb='git branch'
+alias gbr='git branch'
 alias gsb='git submodule'
 # tmux
 alias ktm="tmux kill-server"

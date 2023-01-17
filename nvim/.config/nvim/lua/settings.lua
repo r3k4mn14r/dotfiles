@@ -5,7 +5,7 @@ opt.pumblend = 17
 opt.wildmode = opt.wildmode - 'list'
 opt.wildmode = opt.wildmode + { 'longest', 'full' }
 opt.wildoptions = 'pum'
-
+opt.guicursor = ""
 opt.showmode       = false
 opt.showcmd        = true
 opt.cmdheight      = 1
