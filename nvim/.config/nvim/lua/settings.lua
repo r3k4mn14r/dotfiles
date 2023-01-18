@@ -1,11 +1,9 @@
 local opt = vim.opt
 
-opt.wildmode = {'longest', 'list', 'full'}
-opt.pumblend = 17
-opt.wildmode = opt.wildmode - 'list'
-opt.wildmode = opt.wildmode + { 'longest', 'full' }
-opt.wildoptions = 'pum'
-opt.guicursor = ""
+opt.completeopt    = {"menu", "menuone", "noselect"}
+opt.wildmode       = {'longest', 'list', 'full'}
+opt.wildoptions    = 'pum'
+opt.guicursor      = ""
 opt.showmode       = false
 opt.showcmd        = true
 opt.cmdheight      = 1
@@ -34,9 +32,9 @@ opt.linebreak      = true
 opt.foldmethod     = 'marker'
 opt.foldlevel      = 0
 opt.modelines      = 1
-opt.belloff	   = 'all'
+opt.belloff	       = 'all'
 opt.writebackup	   = false
-opt.backup	   = false
+opt.backup	       = false
 opt.swapfile	   = false
 opt.formatoptions  = opt.formatoptions
                      - 'a'    -- Auto formatting is BAD.

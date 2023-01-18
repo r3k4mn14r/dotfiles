@@ -14,4 +14,4 @@ iron.setup {
   }
 }
 
-nmap("<leader>$", ":IronRepl<CR>")
+vim.keymap.set('n', '<leader>$', ":IronRepl<CR>", { noremap = true, silent = true })

@@ -1,34 +1,41 @@
 return require("packer").startup(function()
     use 'wbthomason/packer.nvim'
-    use 'nvim-lualine/lualine.nvim'
-    use 'tpope/vim-surround'
-    use 'tpope/vim-commentary'
-    use 'tpope/vim-fugitive'
-    use 'mhinz/vim-signify'
-    use 'hkupty/iron.nvim'
-
-    use 'tjdevries/colorbuddy.nvim'
-    use 'tjdevries/gruvbuddy.nvim'
-    use 'norcalli/nvim-colorizer.lua'
-
+    use { -- LSP configurations
+        'neovim/nvim-lspconfig',
+        requires = { 'williamboman/mason.nvim', 'williamboman/mason-lspconfig.nvim' },
+    }
+    use { -- Autocompletion
+        'hrsh7th/nvim-cmp',
+        requires = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip' },
+    }
     use {
         'nvim-treesitter/nvim-treesitter',
         run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
     }
-    use {'nvim-lua/popup.nvim',
-         requires = { {'nvim-lua/plenary.nvim'} }
-     } 
-    use {'nvim-telescope/telescope.nvim', branch = '0.1.x',
-         requires = { {'nvim-lua/plenary.nvim', 'nvim-telescope/telescope-fzy-native.nvim'} }
-     } 
-    use 'nvim-treesitter/nvim-treesitter-context'
-    use 'neovim/nvim-lspconfig'
-    use 'hrsh7th/cmp-nvim-lsp'
-    use 'hrsh7th/cmp-buffer'
-    use 'hrsh7th/nvim-cmp'
+
+
+    use {
+        'nvim-telescope/telescope.nvim',
+        branch = '0.1.x',
+         requires = { 'nvim-lua/plenary.nvim' },
+    } 
+    use {
+        'nvim-telescope/telescope-fzf-native.nvim',
+        run = 'make',
+        cond = vim.fn.executable 'make' == 1,
+    }
+
+    use 'tpope/vim-fugitive'
+    use 'tpope/vim-surround'
+    use 'numToStr/Comment.nvim'
+    use 'hkupty/iron.nvim'
+
+    use 'lewis6991/gitsigns.nvim'
+    use 'nvim-lualine/lualine.nvim'
+    use 'tjdevries/colorbuddy.nvim'
+    use 'tjdevries/gruvbuddy.nvim'
+    use 'norcalli/nvim-colorizer.lua'
     use 'onsails/lspkind-nvim'
-    use 'hrsh7th/cmp-path'
-    use 'L3MON4D3/LuaSnip'
 
     use {'rust-lang/rust.vim', ft = 'rust'}
     use {'cespare/vim-toml', ft = 'toml'}
