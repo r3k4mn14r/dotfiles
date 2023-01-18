@@ -8,27 +8,18 @@ local on_attach = function(_, bufnr)
         vim.keymap.set(mode, keys, func, { buffer = bufnr, desc = desc })
     end
 
+    -- See `:help vim.lsp.*` for documentation on any of the below functions
     map('n', '<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
     map('n', '<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
+    map('n', '<leader>vd', vim.diagnostic.open_float, '[V]iew [D]iagnotics')
+    map('n', '<leader>vws', vim.lsp.buf.workspace_symbol, '[V]iew [W]orkspace [S]ymbols')
     map('n', 'gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
-    map('n', 'gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
     map('n', 'gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
     map('n', 'K', vim.lsp.buf.hover, 'Hover Documentation')
     map('n', 'gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+    map('n', '[d', vim.diagnostic.goto_next, 'Next [D]iagnostic')
+    map('n', ']d', vim.diagnostic.goto_prev, 'Previous [D]iagnostic')
     map('i', '<C-s>', vim.lsp.buf.signature_help, 'Signature Documentation')
-
-    -- -- See `:help vim.lsp.*` for documentation on any of the below functions
-    -- nmap("gd", ":lua vim.lsp.buf.definition()<CR>")
-    -- nmap("K", ":lua vim.lsp.buf.hover()<CR>")
-    -- nmap("gi", ":lua vim.lsp.buf.implementation()<CR>")
-    -- nmap("[d", ":lua vim.diagnostic.goto_next()<CR>")
-    -- nmap("]d", ":lua vim.diagnostic.goto_prev()<CR>")
-    -- nmap("<leader>vd", ":lua vim.diagnostic.open_float()<CR>")
-    -- nmap("<leader>vws", ":lua vim.lsp.buf.workspace_symbol()<CR>")
-    -- nmap("<leader>ca", ":lua vim.lsp.buf.code_action()<CR>")
-    -- nmap("<leader>vrr", ":lua vim.lsp.buf.references()<CR>")
-    -- nmap("<leader>rn", ":lua vim.lsp.buf.rename()<CR>")
-    -- imap("<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
 
     vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
         vim.lsp.buf.format()
