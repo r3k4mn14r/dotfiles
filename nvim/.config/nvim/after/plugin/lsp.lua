@@ -39,7 +39,7 @@ local servers = {
           allFeatures = true,
         },
     },
-    jedi_language_server = {},
+    pylsp = {},
     tsserver = {},
 }
 
