@@ -5,8 +5,16 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+[[ "$OSTYPE" == "linux"* ]] && {
+  source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+  source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+  source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+}
+[[ "$OSTYPE" == "darwin"* ]] && {
+  source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+  source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+  source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
+}
 autoload -U compinit; compinit
 
 # ZSH settings
@@ -57,7 +65,9 @@ alias cp="cp -i"
 alias ln="ln -i"
 alias du="du -h"
 # ls output
-alias ls="ls --group-directories-first --color=auto"
+[[ "$OSTYPE" == "linux"* ]] && {
+  alias ls="ls --group-directories-first --color=auto"
+}
 alias l='ls -1A'  # one column, hidden files.
 alias ll='ls -lh' # human readable sizes.
 alias lr='ll -R'  # human readable sizes, recursively.
@@ -100,8 +110,6 @@ if [[ -x "$(command -v rustc)" ]]; then
 fi
 
 export PATH="$HOME/.npm-packages/bin:$PATH"
-
-source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
