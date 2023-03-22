@@ -15,7 +15,7 @@ font:
 draw_bold_text_with_bright_colors: false
 
 env:
-  TERM: xterm-256color
+  TERM: "alacritty"
 
 # Base16 Google Dark - alacritty color config
 colors:
