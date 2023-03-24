@@ -91,6 +91,8 @@ alias gbr='git branch'
 alias gsb='git submodule'
 # tmux
 alias ktm="tmux kill-server"
+alias ltm="tmux list-sessions"
+alias stm="tmux switch-client -t"
 
 # python environment
 eval "$(pyenv init -)"
