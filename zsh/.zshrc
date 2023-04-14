@@ -1,37 +1,156 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+# Personal Zsh configuration file. It is strongly recommended to keep all
+# shell customization and configuration (including exported environment
+# variables such as PATH) in this file or in files sourced from it.
+#
+# Documentation: https://github.com/romkatv/zsh4humans/blob/v5/README.md.
 
+# Periodic auto-update on Zsh startup: 'ask' or 'no'.
+# You can manually run `z4h update` to update everything.
+zstyle ':z4h:' auto-update      'no'
+# Ask whether to auto-update this often; has no effect if auto-update is 'no'.
+zstyle ':z4h:' auto-update-days '28'
+
+# Keyboard type: 'mac' or 'pc'.
+zstyle ':z4h:bindkey' keyboard  'pc'
+
+# Don't start tmux.
+zstyle ':z4h:' start-tmux       no
+zstyle ':z4h:' prompt-at-bottom 'no'
+
+# Mark up shell's output with semantic information.
+zstyle ':z4h:' term-shell-integration 'yes'
+
+# Right-arrow key accepts one character ('partial-accept') from
+# command autosuggestions or the whole thing ('accept')?
+zstyle ':z4h:autosuggestions' forward-char 'accept'
+
+# Recursively traverse directories when TAB-completing files.
+zstyle ':z4h:fzf-complete' recurse-dirs 'no'
+
+# Enable direnv to automatically source .envrc files.
+zstyle ':z4h:direnv'         enable 'no'
+# Show "loading" and "unloading" notifications from direnv.
+zstyle ':z4h:direnv:success' notify 'yes'
+
+# Enable ('yes') or disable ('no') automatic teleportation of z4h over
+# SSH when connecting to these hosts.
+zstyle ':z4h:ssh:example-hostname1'   enable 'yes'
+zstyle ':z4h:ssh:*.example-hostname2' enable 'no'
+# The default value if none of the overrides above match the hostname.
+zstyle ':z4h:ssh:*'                   enable 'no'
+
+# Send these files over to the remote host when connecting over SSH to the
+# enabled hosts.
+zstyle ':z4h:ssh:*' send-extra-files '~/.nanorc' '~/.env.zsh'
+
+# Install or update core components (fzf, zsh-autosuggestions, etc.) and
+# initialize Zsh. After this point console I/O is unavailable until Zsh
+# is fully initialized. Everything that requires user interaction or can
+# perform network I/O must be done above. Everything else is best done below.
+z4h init || return
+
+# Extend PATH.
+path=(~/bin $path)
+path=(~/.cargo/bin $path)
+
+# Export environment variables.
+export GPG_TTY=$TTY
+export EDITOR="vi"
+export VISUAL="nvim"
+
+# Source additional local files if they exist.
+z4h source ~/.env.zsh
+
+# Use additional Git repositories pulled in with `z4h install`.
+#
+# This is just an example that you should delete. It does nothing useful.
+# z4h source ohmyzsh/ohmyzsh/lib/diagnostics.zsh  # source an individual file
+# z4h load   ohmyzsh/ohmyzsh/plugins/emoji-clock  # load a plugin
+
+# Define key bindings.
+
+bindkey -v
+bindkey -M viins 'jk' vi-cmd-mode
+
+z4h bindkey z4h-backward-kill-word  Ctrl+Backspace     Ctrl+H
+z4h bindkey z4h-backward-kill-zword Ctrl+Alt+Backspace
+
+z4h bindkey undo Ctrl+/ Shift+Tab  # undo the last command line change
+z4h bindkey redo Alt+/             # redo the last undone command line change
+
+z4h bindkey z4h-cd-back    Alt+Left   # cd into the previous directory
+z4h bindkey z4h-cd-forward Alt+Right  # cd into the next directory
+z4h bindkey z4h-cd-up      Alt+Up     # cd into the parent directory
+z4h bindkey z4h-cd-down    Alt+Down   # cd into a child directory
+
+
+# Autoload functions.
+autoload -Uz zmv
+
+# Define functions and completions.
+function md() { [[ $# == 1 ]] && mkdir -p -- "$1" && cd -- "$1" }
+compdef _directories md
+
+# python environment
+eval "$(pyenv init -)"
+function poet() {
+  POET_MANUAL=1
+  if [[ -v VIRTUAL_ENV ]]; then
+    deactivate
+  else
+    . "$(poetry env info --path)/bin/activate"
+  fi
+}
+
+# Define named directories: ~w <=> Windows home directory on WSL.
+[[ -z $z4h_win_home ]] || hash -d w=$z4h_win_home
+
+# Define aliases.
+# dev
+alias e="${(z)VISUAL:-${(z)EDITOR}}"
+alias tree='tree -a -I .git'
+alias grep="grep --color=auto"
+alias rm="rm -i"
+alias mv="mv -i"
+alias cp="cp -i"
+alias ln="ln -i"
+alias du="du -h"
+# ls output
 [[ "$OSTYPE" == "linux"* ]] && {
-  source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-  source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-  source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+  alias ls="${aliases[ls]:-ls} --group-directories-first --color=auto"
 }
-[[ "$OSTYPE" == "darwin"* ]] && {
-  source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-  source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-  source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
-}
-autoload -U compinit; compinit
+alias l="${aliases[ls]:-ls} -1A"  # one column, hidden files.
+alias ll="${aliases[ls]:-ls} -lh" # human readable sizes.
+alias lr="${aliases[ls]:-ll} -R"  # human readable sizes, recursively.
+alias la="${aliases[ls]:-ll} -A"  # human readable sizes, hidden files.
+alias lar="${aliases[la]:-la} -R" # human readable sizes, recursively.
+# git
+alias gs="git status --short"
+alias gS="git status"
+alias ga="git add"
+alias gcm="git commit --message"
+alias gpu="git push -u"
+alias gfo="git fetch origin"
+alias gM="git merge --ff-only"
+alias gd="git diff --no-ext-diff"
+alias gD="git diff --no-ext-diff --word-diff"
+alias gco="git checkout"
+alias gsw="git switch"
+alias gl="git log"
+alias gbr="git branch"
+alias gsb="git submodule"
+# tmux
+alias ktm="tmux kill-server"
+alias ltm="tmux list-sessions"
+alias stm="tmux switch-client -t"
 
-# ZSH settings
-autoload -U colors && colors # Load Colors.
+# Set shell options: http://zsh.sourceforge.net/Doc/Release/Options.html.
+setopt glob_dots             # no special treatment for file names with a leading dot
 unsetopt case_glob           # Use Case-Insensitve Globbing.
-setopt globdots              # Glob Dotfiles As Well.
 setopt extendedglob          # Use Extended Globbing.
-setopt brace_ccl             # Allow Brace Character Class List Expansion.
-setopt long_list_jobs        # List Jobs In The Long Format By Default.
-setopt notify                # Report Status Of Background Jobs Immediately.
 setopt auto_param_slash      # If Completed Parameter Is A Directory, Add A Trailing Slash.
 
-# set zstyles options
-zstyle ':completion:*' completer _extensions _complete _approximate # Define completers
-zstyle ':completion:*' use-cache on # Use cache for commands using cache
-zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/.zcompcache"
-zstyle ':completion:*' complete true # Complete the alias when _expand_alias is used as a function
+zstyle ':completion:*' complete true
 zstyle ':completion:*' menu select
 zstyle ':completion:*' complete-options true
 zstyle ':completion:*' file-sort modification
@@ -46,72 +165,3 @@ zstyle ':completion:*:*:-command-:*:*' group-order aliases builtins functions co
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*' # See ZSHCOMPWID "completion matching control"
 zstyle ':completion:*' keep-prefix true
 
-# vi mode with jk map
-bindkey -v
-bindkey -M viins 'jk' vi-cmd-mode
-
-# editor settings
-export EDITOR="vim"
-export VISUAL="nvim"
-
-# aliases
-alias e="${(z)VISUAL:-${(z)EDITOR}}"
-
-# utilities
-alias grep="grep --color=auto"
-alias rm="rm -i"
-alias mv="mv -i"
-alias cp="cp -i"
-alias ln="ln -i"
-alias du="du -h"
-# ls output
-[[ "$OSTYPE" == "linux"* ]] && {
-  alias ls="ls --group-directories-first --color=auto"
-}
-alias l='ls -1A'  # one column, hidden files.
-alias ll='ls -lh' # human readable sizes.
-alias lr='ll -R'  # human readable sizes, recursively.
-alias la='ll -A'  # human readable sizes, hidden files.
-alias lar='la -R' # human readable sizes, recursively.
-# git
-alias gs='git status --short'
-alias gS='git status'
-alias ga='git add'
-alias gcm='git commit --message'
-alias gpu='git push -u'
-alias gfo='git fetch origin'
-alias gM='git merge --ff-only'
-alias gR='git reset --hard'
-alias gd='git diff --no-ext-diff'
-alias gD='git diff --no-ext-diff --word-diff'
-alias gco='git checkout'
-alias gsw='git switch'
-alias gl='git log'
-alias gbr='git branch'
-alias gsb='git submodule'
-# tmux
-alias ktm="tmux kill-server"
-alias ltm="tmux list-sessions"
-alias stm="tmux switch-client -t"
-
-# python environment
-eval "$(pyenv init -)"
-function poet() {
-  POET_MANUAL=1
-  if [[ -v VIRTUAL_ENV ]]; then
-    deactivate
-  else
-    . "$(poetry env info --path)/bin/activate"
-  fi
-}
-
-# rust environment
-export PATH="$HOME/.cargo/bin:$PATH"  # rust binaries
-if [[ -x "$(command -v rustc)" ]]; then
-  export RUST_SRC_PATH=$(rustc --print sysroot)/lib/rustlib/src/rust/library
-fi
-
-export PATH="$HOME/.npm-packages/bin:$PATH"
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
