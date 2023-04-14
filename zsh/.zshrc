@@ -121,8 +121,8 @@ alias du="du -h"
 }
 alias l="${aliases[ls]:-ls} -1A"  # one column, hidden files.
 alias ll="${aliases[ls]:-ls} -lh" # human readable sizes.
-alias lr="${aliases[ls]:-ll} -R"  # human readable sizes, recursively.
-alias la="${aliases[ls]:-ll} -A"  # human readable sizes, hidden files.
+alias lr="${aliases[ll]:-ll} -R"  # human readable sizes, recursively.
+alias la="${aliases[ll]:-ll} -A"  # human readable sizes, hidden files.
 alias lar="${aliases[la]:-la} -R" # human readable sizes, recursively.
 # git
 alias gs="git status --short"
