@@ -52,7 +52,6 @@ z4h init || return
 # Extend PATH.
 path=(~/bin $path)
 path=(~/.cargo/bin $path)
-path=(~/.local/bin $path)
 
 # Export environment variables.
 export GPG_TTY=$TTY
@@ -93,7 +92,9 @@ function md() { [[ $# == 1 ]] && mkdir -p -- "$1" && cd -- "$1" }
 compdef _directories md
 
 # python environment
-eval "$(pyenv init -)"
+if [[ -d "$HOME/.pyenv" ]]; then
+  eval "$(pyenv init -)"
+fi
 function poet() {
   POET_MANUAL=1
   if [[ -v VIRTUAL_ENV ]]; then
