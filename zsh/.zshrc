@@ -52,6 +52,7 @@ z4h init || return
 # Extend PATH.
 path=(~/bin $path)
 path=(~/.cargo/bin $path)
+path=(~/.local/bin $path)
 
 # Export environment variables.
 export GPG_TTY=$TTY
