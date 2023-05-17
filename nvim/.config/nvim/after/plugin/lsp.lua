@@ -39,7 +39,17 @@ local servers = {
           allFeatures = true,
         },
     },
-    pylsp = {},
+    pylsp = {
+      pylsp = {
+        plugins = {
+          -- for nice interaction with black
+          pycodestyle = {
+            ignore = {'E203'},
+            maxLineLength = 88
+          },
+        }
+      }
+    },
     tsserver = {},
 }
 
