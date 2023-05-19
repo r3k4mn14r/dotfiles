@@ -44,7 +44,7 @@ local servers = {
         plugins = {
           -- for nice interaction with black
           pycodestyle = {
-            ignore = {'E203'},
+            ignore = {'E203', 'W503'},
             maxLineLength = 88
           },
         }
