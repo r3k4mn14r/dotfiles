@@ -44,3 +44,13 @@ Group.new("@property", c.blue)
 Group.new("@punctuation.bracket.rapper", c.gray3, nil, s.none)
 Group.new("@rapper_argument", c.red, nil, s.italic)
 Group.new("@rapper_return", c.orange:light(), nil, s.italic)
+
+vim.cmd [[highlight link @function.call.lua LuaFunctionCall]]
+vim.cmd [[
+  hi link @lsp.type.variable.lua variable
+  hi link @lsp.type.variable.ocaml variable
+  hi link @lsp.type.variable.rust variable
+  hi link @lsp.type.namespace @namespace
+  hi link @punctuation.bracket.rapper @text.literal
+  hi link @normal Normal
+]]
