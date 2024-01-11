@@ -145,6 +145,7 @@ alias gsb="git submodule"
 alias ktm="tmux kill-server"
 alias ltm="tmux list-sessions"
 alias stm="tmux switch-client -t"
+alias tmd="tmux detach-client"
 
 # Set shell options: http://zsh.sourceforge.net/Doc/Release/Options.html.
 setopt glob_dots             # no special treatment for file names with a leading dot
