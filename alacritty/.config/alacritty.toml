@@ -1,0 +1,51 @@
+colors.draw_bold_text_with_bright_colors = false
+
+[colors.bright]
+black = "0x969896"
+blue = "0xb4b7b4"
+cyan = "0x3971ed"
+green = "0x282a2e"
+magenta = "0xe0e0e0"
+red = "0xf96a38"
+white = "0xffffff"
+yellow = "0x373b41"
+
+[colors.cursor]
+cursor = "0xc5c8c6"
+text = "0x1d1f21"
+
+[colors.normal]
+black = "0x1d1f21"
+blue = "0x3971ed"
+cyan = "0x3971ed"
+green = "0x198844"
+magenta = "0xa36ac7"
+red = "0xcc342b"
+white = "0xc5c8c6"
+yellow = "0xfba922"
+
+[colors.primary]
+background = "0x1d1f21"
+foreground = "0xc5c8c6"
+
+[env]
+TERM = "alacritty"
+
+[font]
+size = 11
+
+[font.bold]
+family = "SauceCodePro Nerd Font Mono"
+style = "Regular"
+
+[font.bold_italic]
+family = "SauceCodePro Nerd Font Mono"
+style = "Regular"
+
+[font.italic]
+family = "SauceCodePro Nerd Font Mono"
+style = "Regular"
+
+[font.normal]
+family = "SauceCodePro Nerd Font Mono"
+style = "Regular"
