@@ -15,14 +15,14 @@ cursor = "0xc5c8c6"
 text = "0x1d1f21"
 
 [colors.normal]
-black = "0x1d1f21"
-blue = "0x3971ed"
-cyan = "0x3971ed"
-green = "0x198844"
-magenta = "0xa36ac7"
-red = "0xcc342b"
-white = "0xc5c8c6"
-yellow = "0xfba922"
+black = "0x111111"
+blue = "0x81a2be"
+cyan = "0x8abeb7"
+green = "0x99cc99"
+magenta = "0xfef601"
+red = "0xcc6666"
+white = "0xe0e0e0"
+yellow = "0xf8fe7a"
 
 [colors.primary]
 background = "0x111111"
