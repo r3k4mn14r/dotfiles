@@ -1,6 +1,5 @@
 local opt = vim.opt
 
-opt.completeopt    = {"menu", "menuone", "noselect"}
 opt.wildmode       = {'longest', 'list', 'full'}
 opt.wildoptions    = 'pum'
 opt.guicursor      = ""
@@ -18,7 +17,7 @@ opt.splitright     = true
 opt.splitbelow     = true
 opt.updatetime     = 1000
 opt.hlsearch       = true
-opt.scrolloff      = 8   
+opt.scrolloff      = 8
 opt.autoindent     = true
 opt.cindent        = true
 opt.wrap           = true

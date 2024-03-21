@@ -14,9 +14,6 @@ local function tmap(shortcut, command)
   map('t', shortcut, command)
 end
 
--- leader to <space>
-vim.g.mapleader = " "
-
 -- jk to escape insert mode
 imap("jk", "<esc>")
 imap("<esc>", "<nop>")
