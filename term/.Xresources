@@ -1,5 +1,5 @@
 ! Base16 Google Dark
-#define base00 #1d1f21
+#define base00 #111111
 #define base01 #282a2e
 #define base02 #373b41
 #define base03 #969896
