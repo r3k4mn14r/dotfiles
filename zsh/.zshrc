@@ -92,15 +92,11 @@ function md() { [[ $# == 1 ]] && mkdir -p -- "$1" && cd -- "$1" }
 compdef _directories md
 
 # python environment
-if [[ -d "$HOME/.pyenv" ]]; then
-  eval "$(pyenv init -)"
-fi
-function poet() {
-  POET_MANUAL=1
+function ve() {
   if [[ -v VIRTUAL_ENV ]]; then
     deactivate
-  else
-    . "$(poetry env info --path)/bin/activate"
+  elif [[ -d ".venv" ]]; then
+        . ".venv/bin/activate"
   fi
 }
 
