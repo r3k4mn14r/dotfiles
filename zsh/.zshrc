@@ -136,7 +136,7 @@ alias gco="git checkout"
 alias gsw="git switch"
 alias gl="git log"
 alias gbr="git branch"
-alias gsb="git submodule"
+alias gw="git worktree"
 # tmux
 alias ktm="tmux kill-server"
 alias ltm="tmux list-sessions"
